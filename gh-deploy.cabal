@@ -1,0 +1,43 @@
+name:                gh-deploy
+version:             0.1.0.0
+-- synopsis:
+-- description:
+homepage:            https://github.com/zelinf/gh-deploy#readme
+license:             BSD3
+license-file:        LICENSE
+author:              Zelin Feng
+maintainer:          fengzlin@mail2.sysu.edu.cn
+copyright:           Zelin Feng, 2017, All rights reserved
+category:            Web
+build-type:          Simple
+extra-source-files:  README.md
+data-dir:            config
+data-files:          *.cfg
+cabal-version:       >=1.10
+
+flag Debug
+  default: True
+
+flag Release
+  default: False
+
+library
+  hs-source-dirs:      src
+  exposed-modules:     Zelinf.GitHub.GitHubT
+                     , Zelinf.GitHub.Release
+                     , Zelinf.GitHub.Deploy
+  build-depends:       base >= 4.7 && < 5
+                     , servant
+                     , servant-client
+                     , mtl
+                     , text
+                     , aeson
+  default-language:    Haskell2010
+  if flag(Debug)
+    cpp-options:       -DDEBUG
+  if flag(Release)
+    cpp-options:       -DRELEASE
+
+source-repository head
+  type:     git
+  location: https://github.com/zelinf/gh-deploy
