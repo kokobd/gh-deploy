@@ -10,7 +10,7 @@ import           Control.Monad.IO.Class
 import           Control.Monad.Reader
 import           Data.Text              (Text)
 
-type OAuthToken = Text
+import           Zelinf.GitHub.Auth
 
 newtype GitHubT m a = GitHubT (ReaderT OAuthToken m a)
                       deriving (Functor, Applicative, Monad, MonadReader OAuthToken)
